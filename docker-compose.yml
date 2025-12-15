@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  app:
+    # TODO: Configure build context
+    build: . 
+    container_name: demo_api
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+    depends_on:
+      - db
+      
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
